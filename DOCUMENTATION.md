@@ -1,2 +1,2 @@
-# Dokumentacja
-## Instalacja
+# Documentation
+## Installation

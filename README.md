@@ -1,2 +1,2 @@
-# Mój Projekt
-## Opis projektu
+# My Project
+## Project Description
