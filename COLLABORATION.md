@@ -66,3 +66,49 @@ Equivalent to `git fetch` + `git merge`. Updates your local branch with the late
 - **Use .gitignore.** Keep secrets, build artifacts, and IDE config out of the repository.
 - **Tag releases.** Use semantic versioning (v1.0.0, v1.1.0) to mark production releases.
 - **Resolve conflicts locally.** If a merge conflict occurs, resolve it on your machine, test, then push.
+
+## Resolving Merge Conflicts
+
+When two branches modify the same lines in a file, Git cannot merge automatically. Here is how to handle it:
+
+### 1. Identify the conflict
+
+After running `git merge` or `git pull`, Git will report conflicted files:
+```
+Auto-merging COLLABORATION.md
+CONFLICT (content): Merge conflict in COLLABORATION.md
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+### 2. Open the file and find conflict markers
+
+```
+<<<<<<< HEAD
+Your local changes
+=======
+Incoming changes from the other branch
+>>>>>>>>  feature/some-branch
+```
+
+- **`<<<<<<< HEAD`** — start of your current branch changes
+- **`=======`** — separator between the two versions
+- **`>>>>>>> branch-name`** — end of incoming changes
+
+### 3. Resolve the conflict
+
+Edit the file — keep the correct version, remove the conflict markers:
+```
+The final resolved content goes here
+```
+
+### 4. Finalize the resolution
+
+```bash
+git add <resolved-file>
+git commit -m "Resolve merge conflict in <file>"
+```
+
+### Tips
+- Use `git status` to see which files still have unresolved conflicts.
+- Use `git diff` after resolving to double-check the result before committing.
+- If you want to abort the merge entirely: `git merge --abort`.
