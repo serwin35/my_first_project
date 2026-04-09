@@ -1,1 +1,1 @@
-Nowa funkcjonalność
+New feature
